@@ -1,66 +1,37 @@
 pipeline {
-    agent any
+	    agent any
+	
 
-    stages {
-        stage('Build') {
-            steps {
-                sh 'g++ -o hello new.cpp'
-            }
-        }
+	    stages {
+	        stage('Build') {
+	            steps {
+	                sh 'g++ -o hello new.cpp'
+	            }
+	        }
+	
 
-        stage('Test') {
-            steps {
-                sh './hello'
-            }
-        }
+	        stage('Test') {
+	            steps {
+	                sh './hello'
+	            }
+	        }
+	
 
-        stage('Deploy') {
-            steps {
-                echo 'deployed successfully'
-            }
-        }
-    }
+	        stage('Deploy') {
+	            steps {
+	                echo 'deployed successfully'
+	            }
+	        }
+	    }
+	
 
-    post {
-        always {
-            script {
-                if (currentBuild.result == 'FAILURE') {
-                    echo 'pipeline failed'
-                }
-            }
-        }
-}
-}
-pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                sh 'g++ -o hello new.cpp'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh './hello'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'deployed successfully'
-            }
-        }
-    }
-
-    post {
-        always {
-            script {
-                if (currentBuild.result == 'FAILURE') {
-                    echo 'pipeline failed'
-                }
-            }
-        }
-}
-}
+	    post {
+	        always {
+	            script {
+	                if (currentBuild.result == 'FAILURE') {
+	                    echo 'pipeline failed'
+	                }
+	            }
+	        }
+	}
+	}
